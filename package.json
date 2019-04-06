@@ -1,0 +1,25 @@
+{
+  "name": "jquery_rest_api_sequelize",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shreyakapoor08/jQuery_REST_API_Sequelize.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shreyakapoor08/jQuery_REST_API_Sequelize/issues"
+  },
+  "homepage": "https://github.com/shreyakapoor08/jQuery_REST_API_Sequelize#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mysql2": "^1.6.5",
+    "sequelize": "^5.2.12"
+  }
+}
