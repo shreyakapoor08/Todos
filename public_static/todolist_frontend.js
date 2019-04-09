@@ -1,13 +1,15 @@
 
-async function getAllTodos () {
-    $.get('/todos', (data) => {
-        return data;
-    })
-}
+ function getAllTodos (cb) {
+     $.get('/todos/', (data) => {
+         cb(data);
+     })
+ }
 
-async function addNewTodo () {
-    $.post('/todos', (data) => {
-        return data;
+ function addNewTodo (task, cb) {
+    $.post('/todos/', {
+        task: task
+    }, (data) => {
+        cb(data);
     })
 }
 
@@ -16,6 +18,7 @@ $(function () { //window.onload in jquery si simply writing function in dollar f
     let newTaskBox = $('#newtask')
     let addTaskBtn = $('#addtask')
     let todolistDiv = $('#todolist')
+
 
     function refreshTodoList (todos) {
         todolistDiv.empty();
@@ -27,16 +30,14 @@ $(function () { //window.onload in jquery si simply writing function in dollar f
             <div class="col"></div>
             <div class="col-10">$(todo.task)</div>
             </div>`
-            )
+            );
             todolistDiv.prepend(newTodoItem) // jis order mai fetch hua uske ulte order mai add ho jayega
         }
     }
 
-    getAllTodos().then((todos) => refreshTodoList(todos))
-        .catch(err => console.error(err))
+    getAllTodos((todos) => refreshTodoList(todos))
 
-   addTaskBtn.click(addNewTodo().then((todos) => {
-        refreshTodoList(todos)
-   }).catch(err => console.error(err)))
-
+    addTaskBtn.click(() => {
+        addNewTodo(newTaskBox.val(), (todos) => refreshTodoList(todos))
+    })
 })
