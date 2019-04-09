@@ -13,9 +13,17 @@
     })
 }
 
+function setTodoDone(todoId, done, cb) {
+    $.
+}
+
 function setDone(el) {
     // when we tick any item we have an event and second we need to
     //find which element we tick
+    let todoId = $(el).attr('data-todoid')
+    //attr works like val only thing is in val--without arg it gets and with 1 arg it sets
+    //attr mai with 1 arg it gets and with 2 arg it sets
+    console.log(todoId)
     if (el.checked) {
 
     } else {
@@ -45,7 +53,7 @@ $(function () { //window.onload in jquery si simply writing function in dollar f
             </div>`
             );
             todolistDiv.prepend(newTodoItem) // jis order mai fetch hua uske ulte order mai add ho jayega
-        };
+        }
     }
 
     getAllTodos((todos) => refreshTodoList(todos))

@@ -20,4 +20,18 @@ route.post('/', (req,res) => {
         .catch((err) => console.error(err))
 })
 
+route.post('/:id', (req, res) => {
+    Todo.update({
+
+    }, {
+        where: {
+            id: req.params.id
+        }
+    }) //.update ke ander first argument is new values, second arg is options and options ke ander where clause jata hai
+}) //colon se variable parts bante hai
+// only /id se ussi jagah jata hai but agar /:id kare toh
+// but /:id means /---/ slash ke beech ka jo bhi paet hai
+// id is whatever is available btw the slash , it is not the part of route here
+//isse id variable ban jata hai string ki jagah
+
 exports.route = route;
