@@ -14,7 +14,7 @@
 }
 
 function setTodoDone(todoId, done, cb) {
-    $.
+
 }
 
 function setDone(el) {

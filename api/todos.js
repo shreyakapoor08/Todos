@@ -1,8 +1,7 @@
 const route = require('express').Router();
 const Todo = require('../db/models').models.Todo
 
-//Remember this - a file is run when it is required by some other file  -
-//Fuck offfff AS hole -xD
+//Remember this - a file is run when it is required by some other file
 //Fetch all the todos
 route.get('/', (req, res) => {
     Todo.findAll({
@@ -22,12 +21,15 @@ route.post('/', (req,res) => {
 
 route.post('/:id', (req, res) => {
     Todo.update({
-
+        done: req.body.done,
+        task: req.body.task
     }, {
         where: {
             id: req.params.id
         }
     }) //.update ke ander first argument is new values, second arg is options and options ke ander where clause jata hai
+        .then((result) => res.redirect('.'))
+        .catch(err => console.error(err))
 }) //colon se variable parts bante hai
 // only /id se ussi jagah jata hai but agar /:id kare toh
 // but /:id means /---/ slash ke beech ka jo bhi paet hai
