@@ -20,13 +20,18 @@ route.post('/', (req,res) => {
 })
 
 route.post('/:id', (req, res) => {
+    if (isNaN(parseInt(req.params.id))) {
+        return res.status(404).send({
+            message: "Todo not found"
+        })
+    }
     Todo.update({
         done: req.body.done,
         task: req.body.task
     }, {
         where: {
             id: req.params.id
-        }
+        },
     }) //.update ke ander first argument is new values, second arg is options and options ke ander where clause jata hai
         .then((result) => res.redirect('.'))
         .catch(err => console.error(err))
