@@ -25,6 +25,10 @@ route.post('/:id', (req, res) => {
             message: "Todo not found"
         })
     }
+    //Management wala dekhna hai ?
+    //ARRE  mEIN Dikha raha hu maine pull kr liya tha issi pr dekhle
+    //Ismein DB NHI HAI S>O> >>.....hai maine bana liya tha , BADYA -
+    console.log(req)
     Todo.update({
         done: req.body.done,
         task: req.body.task

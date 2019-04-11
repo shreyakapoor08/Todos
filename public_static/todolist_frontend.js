@@ -12,14 +12,16 @@
         cb(data);
     })
 }
-
+//${TodoId} - goes into params - see achaaa yeh kaise kara
 function setTodoDone(todoId, done, cb) {
         $.post(`/todos/${todoId}`, {
+           //this is what goes into body , if its a post req in case of AJAX
             done: done
         }, (todos) => {
             cb(todos)
         })
 }
+
 
 
 
@@ -31,11 +33,12 @@ $(function () { //window.onload in jquery si simply writing function in dollar f
     console.log(inputCheckBox)
 
 
+
     function refreshTodoList (todos) {
         todolistDiv.empty();
 
         for (todo of todos) {
-            let checkBox = $(`<input data-todoid="${todo.id}" onchange="setTodoDone(this)" type="checkbox" class="col todo-done">`) // jab bhi koi event hota hai toh window.event sends the event that is happening now
+            let checkBox = $(`<input data-todoid="${todo.id}" onchange="setDone(this)" type="checkbox" class="col todo-done">`) // jab bhi koi event hota hai toh window.event sends the event that is happening now
             if (todo.done) {
                 checkBox.prop('checked', true)
             }
@@ -50,7 +53,7 @@ $(function () { //window.onload in jquery si simply writing function in dollar f
         }
     }
 
-    function setDone(el) {
+    window.setDone = function (el) {
         // when we tick any item we have an event and second we need to
         //find which element we tick
         let todoId = $(el).attr('data-todoid')
@@ -58,9 +61,9 @@ $(function () { //window.onload in jquery si simply writing function in dollar f
         //attr mai with 1 arg it gets and with 2 arg it sets
         console.log(todoId)
         if (el.checked) {
-            setTodoDone(todoId, true, (todos) => refreshTodoList(todos))
+            setTodoDone(todoId, true, refreshTodoList)
         } else {
-            setTodoDone(todoId, true, (todos) => refreshTodoList(todos))
+            setTodoDone(todoId, false, refreshTodoList)
         }
     }
 
