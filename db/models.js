@@ -42,9 +42,17 @@ const User = db.define('users', {
 })
 
 Todo.belongsTo(User)
-// User.hasOne(Todo) //has wali query se
-// User.hasMany(Todo)
-// Todo.belongsToMany(User)
+User.hasOne(Todo)
+// .hasOne happens where we want to split a single data into 2 tables like user aur password wale table ko alag alag rakhte hai
+
+User.hasMany(Todo)
+// .hasMany ek user ke multiple todos ho sakte hai
+//Todo.belongsToMany(User)
+// belongs to many is for mapping table jaha apne mamy to many mapping karni hai\
+// mapping table is created here in this case name of mapping table will be todouser
+// if we do User.belongsToMany(Todo) then mapping table ka naam will be usertodo
+//rest everything is same in both case
+// as parameter is used to create multiple mapping table
 
 db.sync({force: true}) //sync se sequelize db ke sath connect karta hai
 //aur jo models humne yaha define kare hai unn table ko create karega
