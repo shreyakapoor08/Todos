@@ -20,6 +20,8 @@ route.post('/', (req,res) => {
         .catch((err) => console.error(err))
 })
 
+//parseInt accepts the string and convert into integer
+// req.params comes from path segments of the URL that match a parameter in the route definition
 route.post('/:id', (req, res) => {
     if (isNaN(parseInt(req.params.id))) {
         return res.status(404).send({
