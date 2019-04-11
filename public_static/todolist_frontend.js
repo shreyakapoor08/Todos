@@ -1,5 +1,5 @@
 
- function getAllTodos (cb) {
+ function getAllTodos (cb) { // cb is callback
      $.get('/todos/', (data) => {
          cb(data);
      })

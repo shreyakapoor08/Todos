@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const DataTypes = Sequelize.DataTypes;  //sequelize ka datatype wala variable ko declare kara ha
+const DataTypes = Sequelize.DataTypes;  //sequelize ka datatype wala variable ko declare kara hai
 //cz vo baar baar use hoga toh hum Sequelize.DataType likhne se bach jayenge
 const DB = require('../config.json').DB;
 
@@ -26,6 +26,18 @@ const Todo = db.define('todos', {
     done: {
         type: DataTypes.BOOLEAN,
         default: false
+    }
+})
+
+const User = db.define('users', {
+    id: {
+        type: DataType.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    username: {
+        type: DataTypes.STRING,
+        allowNull: false
     }
 })
 

@@ -25,16 +25,14 @@ route.post('/:id', (req, res) => {
             message: "Todo not found"
         })
     }
-    //Management wala dekhna hai ?
-    //ARRE  mEIN Dikha raha hu maine pull kr liya tha issi pr dekhle
-    //Ismein DB NHI HAI S>O> >>.....hai maine bana liya tha , BADYA -
+
     console.log(req)
     Todo.update({
         done: req.body.done,
         task: req.body.task
     }, {
         where: {
-            id: req.params.id
+            id: req.params.id // request ke 3 parts hote hai..query , body and params
         },
     }) //.update ke ander first argument is new values, second arg is options and options ke ander where clause jata hai
         .then((result) => res.redirect('.'))
