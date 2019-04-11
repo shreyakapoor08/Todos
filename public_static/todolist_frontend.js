@@ -7,7 +7,8 @@
 
  function addNewTodo (task, cb) {
     $.post('/todos/', {
-        task: task
+        task: task,
+        userId: localStorage.getItem('userid')
     }, (data) => {
         cb(data);
     })

@@ -14,7 +14,8 @@ route.get('/', (req, res) => {
 route.post('/', (req,res) => {
     Todo.create({
         task: req.body.task,
-        done: false
+        done: false,
+        userId: req.body.userId
     }).then((result) => res.redirect('.'))
         .catch((err) => console.error(err))
 })

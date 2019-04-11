@@ -31,7 +31,7 @@ const Todo = db.define('todos', {
 
 const User = db.define('users', {
     id: {
-        type: DataType.INTEGER,
+        type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
@@ -41,7 +41,12 @@ const User = db.define('users', {
     }
 })
 
-db.sync({alter: true}) //sync se sequelize db ke sath connect karta hai
+Todo.belongsTo(User)
+// User.hasOne(Todo) //has wali query se
+// User.hasMany(Todo)
+// Todo.belongsToMany(User)
+
+db.sync({force: true}) //sync se sequelize db ke sath connect karta hai
 //aur jo models humne yaha define kare hai unn table ko create karega
 //we have to do when we are running server for the first time cz next time se
 //db bana hua hoga. altr: true se database ko vo edit kr sakta hai agar already bana hua hoga toh
@@ -49,5 +54,5 @@ db.sync({alter: true}) //sync se sequelize db ke sath connect karta hai
     .catch((err) => console.error(err)) //sync hua ya nahi pata karne ke liye as it is a promise object so .then method and .catch method se pata kar sakte hai
 
 exports.models = {
-    Todo
+    Todo, User
 }
