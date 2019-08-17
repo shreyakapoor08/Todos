@@ -1,6 +1,6 @@
 
  function getAllTodos (cb) { // cb is callback
-     $.get('/todos/', (data) => {
+     $.get('/todos/', (data) => { //callback function mai data ata hai
          cb(data);
      })
  }
@@ -13,7 +13,8 @@
         cb(data);
     })
 }
-//${TodoId} - goes into params - see achaaa yeh kaise kara
+//${TodoId} - goes into params
+ //given a todoid it sets the value to true or false
 function setTodoDone(todoId, done, cb) {
         $.post(`/todos/${todoId}`, {
            //this is what goes into body , if its a post req in case of AJAX
@@ -27,7 +28,7 @@ function setTodoDone(todoId, done, cb) {
 
 
 $(function () { //window.onload in jquery si simply writing function in dollar function
-    let newTaskBox = $('#newtask')
+    let newTaskBox = $('#newtask') //so that we need not go to DOM to search ele every time, instead store it in a variable
     let addTaskBtn = $('#addtask')
     let todolistDiv = $('#todolist')
     let inputCheckBox = $('input.todo-done')
@@ -40,6 +41,7 @@ $(function () { //window.onload in jquery si simply writing function in dollar f
 
         for (todo of todos) {
             let checkBox = $(`<input data-todoid="${todo.id}" onchange="setDone(this)" type="checkbox" class="col todo-done">`) // jab bhi koi event hota hai toh window.event sends the event that is happening now
+            //data-todoid is a convention to store .id we cannot make custom attribute without hiphen
             if (todo.done) {
                 checkBox.prop('checked', true)
             }
@@ -57,6 +59,7 @@ $(function () { //window.onload in jquery si simply writing function in dollar f
     window.setDone = function (el) {
         // when we tick any item we have an event and second we need to
         //find which element we tick
+        //console.log(el)
         let todoId = $(el).attr('data-todoid')
         //attr works like val only thing is in val--without arg it gets and with 1 arg it sets
         //attr mai with 1 arg it gets and with 2 arg it sets

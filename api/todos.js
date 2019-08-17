@@ -4,8 +4,8 @@ const Todo = require('../db/models').models.Todo
 //Remember this - a file is run when it is required by some other file
 //Fetch all the todos
 route.get('/', (req, res) => {
-    Todo.findAll({
-
+    Todo.findAll({ //findAll will work as select *
+        //here if we want to find according to some condition in that case we can add where clause etc
     }).then((todos) => res.send(todos))
       .catch((err) => console.error(err))
 })
@@ -14,7 +14,7 @@ route.get('/', (req, res) => {
 route.post('/', (req,res) => {
     Todo.create({
         task: req.body.task,
-        done: false,
+        done: false, //setting value false
         userId: req.body.userId
     }).then((result) => res.redirect('.'))
         .catch((err) => console.error(err))
@@ -22,17 +22,18 @@ route.post('/', (req,res) => {
 
 //parseInt accepts the string and convert into integer
 // req.params comes from path segments of the URL that match a parameter in the route definition
-route.post('/:id', (req, res) => {
-    if (isNaN(parseInt(req.params.id))) {
+route.post('/:id', (req, res) => { //id is whatever is available after /, isse id variable ban jata hai string ki jagah
+    if (isNaN(parseInt(req.params.id))) { //agar yeh int nahi hai
         return res.status(404).send({
-            message: "Todo not found"
+            message: "Todo not found"  //while creating rest api all should be in rest, json data
         })
     }
 
     console.log(req)
-    Todo.update({
+    Todo.update({ //to-do ko change karna hai accrd to whatever value is coming
         done: req.body.done,
         task: req.body.task
+        //sequelize automatically removes undefined keys
     }, {
         where: {
             id: req.params.id // request ke 3 parts hote hai..query , body and params

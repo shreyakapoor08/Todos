@@ -5,7 +5,7 @@ $(() => {
             username: username
         }, (data) => {
             localStorage.setItem('username', username)
-            localStorage.setItem('userid', data.id)
+            localStorage.setItem('userid', data.id) //id is autoIncremented
             window.location = '/todolist.html'
         })
 

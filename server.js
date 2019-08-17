@@ -1,5 +1,5 @@
 const express = require('express')
-const config =  require('./config.json')
+const config =  require('./config.json') //calling config file
 const bodyParser = require('body-parser')
 const path = require('path')
 
